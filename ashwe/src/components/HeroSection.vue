@@ -2,14 +2,16 @@
   <section
     class="hero-section text-center text-white"
     style="
-      background-image: url('/src/assets/hero1.jpeg');
       background-size: cover;
       padding: 100px 0;
+    "
+     :style="
+      `background-image: url(${app_conf.config.hero || 'hero1.jpeg'})`
     "
   >
     <div class="container">
       <img
-        :src="kevinImage"
+        :src="app_conf.config.hero || 'file.enc'"
         alt="Kevin Ashwe"
         class="rounded-circle mb-3"
         style="width: 150px; height: 150px"
@@ -34,7 +36,7 @@
 <script setup>
 import { useConfigStore } from "@/stores/config";
 import { RouterLink } from "vue-router";
-const kevinImage = "/src/assets/file.enc";
+const kevinImage = "file.enc";
 const app_conf = useConfigStore()
 </script>
 

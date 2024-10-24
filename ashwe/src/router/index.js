@@ -22,7 +22,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/kevin-ashwe/"),
   routes,
   activeClass:"active",
   exactActiveClass: "active"

@@ -11,7 +11,7 @@ export const useConfigStore = defineStore('config', () => {
 
   const getConfig = async () => {
     try {
-      const res = await axios.get("http://127.0.0.1:8000/api/config/1")
+      const res = await axios.get("api/config/1")
       config.value = res.data
       console.log(res)
     } catch (error) {
