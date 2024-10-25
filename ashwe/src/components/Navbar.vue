@@ -24,6 +24,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/podcasts">Podcasts</router-link>
           </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/cart">Cart</router-link>
+          </li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"

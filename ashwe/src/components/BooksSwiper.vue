@@ -16,15 +16,24 @@
           }"
           class="mySwiper"
         >
-          <swiper-slide v-for="book in books.books" :key="book.id">
-            <div class="card">
-              <img :src="book.cover" class="card-img-top img-fluid" :alt="book.title" />
-              <div class="card-body text-center">
+          <swiper-slide v-for="book in books.books" :key="book.id" class="swiper-slide card">
+            <div class="card-body">
+              <img :src="book.cover" class=".card-img-top img-fluid" :alt="book.title" />
+              <div class="card-footer text-center">
                 <h5 class="card-title">{{ book.title }}</h5>
                 <p class="card-text">&#8358; {{ book.price }}</p>
-                <button class="btn btn-primary" @click="addToCart(book)">
+               <div class="d-flex column">
+               <div class="col">
+                <button class="btn btn-outline-primary btn-sm" @click="books.addToCart(book)">
                   Add to Cart
                 </button>
+               </div>
+               <div class="col">
+                <button class="btn btn-outline-primary btn-sm" @click="books.buyNow(book)">
+                  Buy Now
+                </button>
+               </div>
+               </div>
               </div>
             </div>
           </swiper-slide>
@@ -46,16 +55,11 @@ onMounted(()=>{
 </script>
 
 <style scoped>
-.mySwiper {
-  width: 100%;
+.mySwiper, .card-body, img{
+  width: 100% !important;
   height: 100%;
 }
 
-.swiper-slide {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .img-fluid {
   max-width: 100%;
