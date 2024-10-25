@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <Navbar :name="app_conf.config.name" />
+  <Navbar :name="app_conf.config.name" />
+  <div class="container min-vh-100 cont">
     <router-view />
-    <Footer />
   </div>
+  <Footer />
 </template>
 
 <script setup>
@@ -15,3 +15,8 @@ import { useConfigStore } from "@/stores/config";
 import { onMounted } from "vue";
 const app_conf = useConfigStore()
 </script>
+<style scoped>
+.cont{
+  min-height: var(100vh - 30%) !important
+}
+</style>

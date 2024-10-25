@@ -18,7 +18,9 @@
         >
           <swiper-slide v-for="book in books.books" :key="book.id" class="swiper-slide card">
             <div class="card-body">
+              <router-link :to="{name: 'book', params: {pk: book.id}}">
               <img :src="book.cover" class=".card-img-top img-fluid" :alt="book.title" />
+            </router-link>
               <div class="card-footer text-center">
                 <h5 class="card-title">{{ book.title }}</h5>
                 <p class="card-text">&#8358; {{ book.price }}</p>
