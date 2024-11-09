@@ -23,7 +23,7 @@ class BooksViewSet(ModelViewSet):
     @action(methods=["GET"], detail=False)
     def latest(self, request):
         items = self.get_queryset()[:10]
-        ser = self.get_serializer_class(items, many=True)
+        ser = self.get_serializer(items, many=True)
         return Response(ser.data, status=status.HTTP_200_OK)
     
     @method_decorator(cache_page(60 * 30))
