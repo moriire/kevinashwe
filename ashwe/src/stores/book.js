@@ -5,6 +5,7 @@ import router from '@/router'
 export const useBookStore = defineStore('book', () => {
   const count = ref(0)
   const books = ref([])
+  const latestBooks = ref([])
   const book = ref({})
   const carts = ref(JSON.parse(localStorage.getItem("carts"))||[])
 
@@ -38,6 +39,17 @@ const removeFromCart = (index) => {
 
     }
   }
+  const getLatestBooks = async () => {
+    try {
+      const res = await axios.get("api/books/latest/")
+      latestBooks.value = res.data
+      console.log(res.data)
+    } catch (error) {
+      window.alert("error", error)
+    } finally{
+
+    }
+  }
   const getBooks = async () => {
     try {
       const res = await axios.get("api/books/")
@@ -49,5 +61,5 @@ const removeFromCart = (index) => {
 
     }
   }
-  return { getBook, getBooks, book,  books, addToCart, buyNow, totalPrice, removeFromCart, carts }
+  return {getLatestBooks, getBook, getBooks, latestBooks, book,  books, addToCart, buyNow, totalPrice, removeFromCart, carts }
 })

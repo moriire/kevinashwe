@@ -12,7 +12,6 @@ import Footer from "@/components/Footer.vue";
 
 import { RouterView } from "vue-router";
 import { useConfigStore } from "@/stores/config";
-import { onMounted } from "vue";
 const app_conf = useConfigStore()
 </script>
 <style scoped>

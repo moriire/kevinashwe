@@ -14,9 +14,8 @@
             768: { slidesPerView: 2, spaceBetween: 20 },
             1024: { slidesPerView: 4, spaceBetween: 30 },
           }"
-          class="mySwiper my-5"
-        >
-          <swiper-slide v-for="book in books.books" :key="book.id" class="swiper-slide card">
+          class="mySwiper my-5">
+          <swiper-slide v-for="(book, index) in books.latestBooks" :key="index" class="swiper-slide card">
             <BookSingle :book="book" />
           </swiper-slide>
         </swiper>
@@ -34,7 +33,7 @@ import BookSingle from "./books/BookSingle.vue";
 
 const books = useBookStore()
 onMounted(()=>{
-  books.getBooks()
+  books.getLatestBooks()
 })
 </script>
 

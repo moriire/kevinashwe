@@ -21,9 +21,9 @@
           <li class="nav-item">
             <router-link class="nav-link" to="/books">Books</router-link>
           </li>
-          <li class="nav-item">
+          <!--li class="nav-item">
             <router-link class="nav-link" to="/podcasts">Podcasts</router-link>
-          </li>
+          </li-->
           <li class="nav-item">
             <router-link class="nav-link" to="/cart">Cart</router-link>
           </li>
