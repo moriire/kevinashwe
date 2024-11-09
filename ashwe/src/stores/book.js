@@ -7,6 +7,14 @@ export const useBookStore = defineStore('book', () => {
   const books = ref([])
   const book = ref({})
   const carts = ref(JSON.parse(localStorage.getItem("carts"))||[])
+
+const totalPrice = computed(() => {
+  return carts.value.reduce((total, item) => total + item.price, 0);
+});
+const removeFromCart = (index) => {
+  carts.value.splice(index, 1);
+  localStorage.setItem("carts", JSON.stringify(carts.value));
+};
   const addToCart = async (book)=>{
     carts.value.push(book)
     localStorage.setItem("carts", JSON.stringify(carts.value))
@@ -41,5 +49,5 @@ export const useBookStore = defineStore('book', () => {
 
     }
   }
-  return { getBook, getBooks, book,  books, addToCart, buyNow }
+  return { getBook, getBooks, book,  books, addToCart, buyNow, totalPrice, removeFromCart, carts }
 })

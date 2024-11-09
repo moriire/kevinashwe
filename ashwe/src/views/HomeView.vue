@@ -3,7 +3,7 @@
     <Navbar />
     <HeroSection />
     <BooksSwiper />
-    <section class="container my-5">
+    <!--section class="container my-5">
   <h2 class="text-center mb-5">Latest Podcasts</h2>
   <div class="row justify-content-center">
     <div class="col-md-4">
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-</section>
+</section-->
 
     <Footer />
   </div>

@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY", "mmdddmm")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(int(os.environ.get("DEBUG", 1)))
-ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0"]
+ALLOWED_HOSTS = ["127.0.0.1", "0.0.0.0", 'ashwe.pythonanywhere.com' ]
 
 if os.environ.get("ALLOWED_HOSTS") is not None:
     try:
@@ -140,7 +140,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://127.0.0.1:3000",
      "http://127.0.0.1:6379",
-    "http://127.0.0.1:5173"
+    "http://127.0.0.1:5173",
+    "https://moriire.github.io/kevin-ashwe/"
     ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -162,26 +163,14 @@ DJOSER = {
     "EMAIL_FRONTEND_PROTOCOL": "http",
     "EMAIL_FRONTEND_DOMAIN": "localhost:5173",
     "EMAIL_FRONTEND_SITE_NAME": "Kevin Ashwe",
-   'LOGIN_FIELD' : 'email',
-    'USERNAME_CHANGED_EMAIL_CONFIRMATION' : True,
-    'PASSWORD_CHANGED_EMAIL_CONFIRMATION' : True,
-    'SEND_EMAIL_CONFIRMATION' : True,
+    'LOGIN_FIELD' : 'email',
     'SET_USERNAME_RETYPE' : True,
     'SET_PASSWORD_RETYPE' : True,
-    'USERNAME_RESET_CONFIRM_URL' : 'password/reset/confirm/{uid}/{token}',
-    'PASSWORD_RESET_CONFIRM_URL' : 'email/reset/confirm/{uid}/{token}',
-    'ACTIVATION_URL' : 'auth/activate/{uid}/{token}',
-    "SEND_CONFIRMATION_EMAIL": True,
-    'SEND_ACTIVATION_EMAIL' : True,
-     "USER_ID_FIELD": "id",
-     "EMAIL": {"activation": "users.emails.ActivationEmail"},
+   "USER_ID_FIELD": "id",
      "SERIALIZERS":{
          "token_create": "users.serializers.CustomTokenObtainSerializer",
           
      },
-     'SOCIAL_AUTH_ALLOWED_REDIRECT_URIS': [
-        'http://localhost:8000/temporary-redirect-for-testing/',
-    ]
 }
 
 from datetime import timedelta

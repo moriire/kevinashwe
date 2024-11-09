@@ -7,7 +7,7 @@
       <div class="col-md-6">
         <h2>{{ books.book.title }}</h2>
         <h4>{{ books.book.subtitle }}</h4>
-        <p>{{ books.book.description }}</p>
+        <p class="my-3">{{ books.book.description }}</p>
         <h4>{{ books.book.price | currency }}</h4>
         <div class="my-4 d-flex">
           <button class="btn btn-outline-primary btn-small me-4" @click="books.addToCart(book)">

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3 sticky-top">
     <div class="container">
       <router-link class="navbar-brand fw-bold text-primary" to="/">{{ props.name }}</router-link>
       <button

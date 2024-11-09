@@ -1,6 +1,6 @@
 <template>
   <Navbar :name="app_conf.config.name" />
-  <div class="container min-vh-100 cont">
+  <div class="container cont">
     <router-view />
   </div>
   <Footer />
@@ -17,6 +17,6 @@ const app_conf = useConfigStore()
 </script>
 <style scoped>
 .cont{
-  min-height: var(100vh - 30%) !important
+  height: var(100vh - 30%) !important
 }
 </style>

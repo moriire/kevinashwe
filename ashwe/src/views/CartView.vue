@@ -2,7 +2,7 @@
   <div class="container my-5">
     <h2>Your Cart</h2>
 
-    <div v-if="carts.length === 0">
+    <div v-if="books.carts.length === 0">
       <p>
         Your cart is empty. <router-link to="/books">Browse Books</router-link>
       </p>
@@ -18,13 +18,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in carts" :key="index">
+            <tr v-for="(item, index) in books.carts" :key="index">
+              <!--td>
+                <img :src="item.cover" :alt="item.title" class="img img-thumbnail">
+              </td-->
               <td>{{ item.title }}</td>
               <td>{{ item.price }}</td>
               <td>
                 <button
                   class="btn btn-danger btn-sm"
-                  @click="removeFromCart(index)"
+                  @click="books.removeFromCart(index)"
                 >
                   Remove
                 </button>
@@ -34,7 +37,7 @@
           <tfoot>
             <tr>
               <td>
-                <h4>Total: {{ totalPrice | currency }}</h4>
+                <h4>Total: {{ books.totalPrice | currency }}</h4>
               </td>
               <td colspan="2" class="text-center">
                 <router-link to="/checkout" class="btn btn-outline-primary btn-small"
@@ -50,16 +53,9 @@
 </template>
 
 <script setup>
+import { useBookStore } from "@/stores/book";
 import { computed, onMounted, ref } from "vue";
-const carts = ref(JSON.parse(localStorage.getItem("carts")) || []);
-
-const totalPrice = computed(() => {
-  return carts.value.reduce((total, item) => total + item.price, 0);
-});
-const removeFromCart = (index) => {
-  carts.value.splice(index, 1);
-  localStorage.setItem("carts", JSON.stringify(carts.value));
-};
+const books = useBookStore()
 </script>
 
 <style scoped>

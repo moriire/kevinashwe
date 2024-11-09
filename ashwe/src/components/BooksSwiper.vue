@@ -2,7 +2,7 @@
   <section class="my-5">
     <div class="container">
       <div class="row" >
-        <h2 class="text-center mb-4">Books by Kevin Ashwe</h2>
+        <h2 class="text-center my-4">Books by Kevin Ashwe</h2>
         <swiper
           :slides-per-view="1"
           space-between="10"
@@ -14,30 +14,10 @@
             768: { slidesPerView: 2, spaceBetween: 20 },
             1024: { slidesPerView: 4, spaceBetween: 30 },
           }"
-          class="mySwiper"
+          class="mySwiper my-5"
         >
           <swiper-slide v-for="book in books.books" :key="book.id" class="swiper-slide card">
-            <div class="card-body">
-              <router-link :to="{name: 'book', params: {pk: book.id}}">
-              <img :src="book.cover" class=".card-img-top img-fluid" :alt="book.title" />
-            </router-link>
-              <div class="card-footer text-center">
-                <h5 class="card-title">{{ book.title }}</h5>
-                <p class="card-text">&#8358; {{ book.price }}</p>
-               <div class="d-flex column">
-               <div class="col">
-                <button class="btn btn-outline-primary btn-sm" @click="books.addToCart(book)">
-                  Add to Cart
-                </button>
-               </div>
-               <div class="col">
-                <button class="btn btn-outline-primary btn-sm" @click="books.buyNow(book)">
-                  Buy Now
-                </button>
-               </div>
-               </div>
-              </div>
-            </div>
+            <BookSingle :book="book" />
           </swiper-slide>
         </swiper>
       </div>
@@ -50,6 +30,8 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/swiper-bundle.min.css"; 
 import { onMounted } from "vue";
 import { useBookStore } from "@/stores/book";
+import BookSingle from "./books/BookSingle.vue";
+
 const books = useBookStore()
 onMounted(()=>{
   books.getBooks()
