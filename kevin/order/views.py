@@ -28,14 +28,13 @@ class OrderView(ModelViewSet):
                     print(item.get("id"))
                     order_obj = Order.objects.create(
                     created_by = metadata.get('full_name'),
-                    email = metadata.get("email"),# data.get("email"),
+                    email = metadata.get("email"),
                     reference_code = reference,
                     amount = float(item.get("price")) / 100,
                     cart = BooksModel.objects.get(pk = item.get("id"))
                     #city = metadata.get("city")
                 )
-                    #await 
-                    #order_obj.save()   
+                    
                 return Response({"data": "received"}, status=status.HTTP_201_CREATED)
             case _:
                 print(data)
