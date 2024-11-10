@@ -22,14 +22,14 @@ class OrderView(ModelViewSet):
                     details.get("metadata")
                 )
                
-                items_bought = json.loads(metadata.get("custom_fields"))
+                items_bought = metadata.get("custom_fields")
                 for item in items_bought:
-                    print(item)
+                    print(item.get("id"))
                     order_obj=Order.objects.acreate(
                     created_by = metadata.get('full_name'),
                     email = metadata.get("email"),# data.get("email"),
                     reference_code = reference,
-                    amount = item.get("price")/100,
+                    amount = item.get("price") / 100,
                     cart = item.get("id")
                     #city = metadata.get("city")
                 )
