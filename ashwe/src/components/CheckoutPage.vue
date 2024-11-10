@@ -72,32 +72,15 @@ const form = ref({
   email: "",
   amount: books.totalPrice * 100,
   metadata: {
+    email: "",
     full_name: "",
     phone: "",
     custom_fields: books.carts
   }
 });
 
-const pform = ref({
-  tx_ref: tx_ref.value,
-  amount: books.totalPrice,
-  currency: "NGN",
-  //paymentMethod: "credit_card",
-  payment_options: "card, ussd, banktransfer, googlepay, account",
-  redirect_url: "",
-  max_retry_attempt: 5,
-  customer: {
-    email: "",
-    name: "",
-    phonenumber: "",
-  },
-  customizations: {
-    title: "Kevin Ashwe Books",
-    description: "",
-  },
-});
-
 const submitCheckout = async () => {
+  form.value.metadata.email = form.value.email
   try {
     const response = await axios.post(
       'https://api.paystack.co/transaction/initialize',

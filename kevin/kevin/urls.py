@@ -6,6 +6,10 @@ from rest_framework.routers import SimpleRouter
 from app_config.views import AppModelRetrieveViewSet
 from books.views  import BooksViewSet
 from order.views import OrderView
+admin.site.site_header = 'Kevin Ashwe Books Admin'
+admin.site.site_title = "Kevin Ashwe Books"
+admin.site.index_title = "Kevin Ashwe Site administration"
+admin.site.site_url = "https://moriire.github.io/kevin-ashwe/"
 router = SimpleRouter(trailing_slash=True)
 router.register(r"config", AppModelRetrieveViewSet)
 router.register(r"books", BooksViewSet)
