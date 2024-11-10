@@ -29,7 +29,7 @@ class OrderView(ModelViewSet):
                     created_by = metadata.get('full_name'),
                     email = metadata.get("email"),# data.get("email"),
                     reference_code = reference,
-                    amount = item.get("price") / 100,
+                    amount = float(item.get("price")) / 100,
                     cart = item.get("id")
                     #city = metadata.get("city")
                 )
