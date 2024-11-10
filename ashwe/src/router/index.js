@@ -7,6 +7,7 @@ import BaseView from "../views/BaseView.vue";
 import HomeView from "@/views/HomeView.vue";
 import BookDetailsView from "@/views/BookDetailsView.vue";
 import BookList from "@/views/BookList.vue";
+import SuccessView from '@/views/SuccessView.vue'
 
 const routes = [
   { path: "/home", component: HeroSection },
@@ -20,6 +21,12 @@ const routes = [
       { path: "/podcasts", component: PodcastSection },
       { path: "/cart", component: CartView },
       { path: "/checkout", component: CheckoutPage },
+      {
+        path: '/payment-success',
+        name: 'payment-success',
+        component: SuccessView,
+        meta: { title: "Payment Success" }
+      },
     ],
   },
 ];

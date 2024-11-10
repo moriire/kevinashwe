@@ -1,6 +1,6 @@
 <template>
   <div class="row my-5">
-    <div class="col-lg-8  col-sm-10 col-xs-12">
+    <div class="col-lg-8  col-sm-10 col-xs-12 my-4">
       <h2 class="text-center mb-4">Checkout</h2>
       <form @submit.prevent="submitCheckout">
         <div class="mb-3">
@@ -9,7 +9,7 @@
             type="text"
             id="name"
             class="form-control"
-            v-model="form.customer.name"
+            v-model="form.metadata.full_name"
             required
           />
         </div>
@@ -18,7 +18,7 @@
           <input
             id="phone"
             class="form-control"
-            v-model="form.customer.phonenumber"
+            v-model="form.metadata.phone"
             required
           />
         </div>
@@ -28,7 +28,7 @@
             type="email"
             id="email"
             class="form-control"
-            v-model="form.customer.email"
+            v-model="form.email"
             required
           />
         </div>
@@ -59,13 +59,31 @@
 
 <script setup>
 import { useBookStore } from "@/stores/book";
+import { v4 as uuid4 } from 'uuid'
 import axios from "axios";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
+
 const books = useBookStore();
+const tx_ref = ref(null)
+const paymetApi = import.meta.env.VITE_PAYSTACK_API
+
 const form = ref({
-  tx_ref: "UNIQUE_TRANSACTION_REFERENCE",
+  reference: tx_ref.value,
+  email: "",
+  amount: books.totalPrice * 100,
+  metadata: {
+    full_name: "",
+    phone: "",
+    custom_fields: books.carts
+  }
+});
+
+const pform = ref({
+  tx_ref: tx_ref.value,
   amount: books.totalPrice,
-  paymentMethod: "credit_card",
+  currency: "NGN",
+  //paymentMethod: "credit_card",
+  payment_options: "card, ussd, banktransfer, googlepay, account",
   redirect_url: "",
   max_retry_attempt: 5,
   customer: {
@@ -82,18 +100,22 @@ const form = ref({
 const submitCheckout = async () => {
   try {
     const response = await axios.post(
-      "https://api.flutterwave.com/v3/payments",
+      'https://api.paystack.co/transaction/initialize',
       form.value,
       {
         headers: {
-          Authorization: `Bearer ${process.env.FLW_SECRET_KEY}`,
-          "Content-Type": "application/json",
+          Authorization: `Bearer ${paymetApi}`,
+          'Content-Type': 'application/json',
         },
-      }
-    );
+      })
+    //console.log(response.data.data.authorization_url)
+    location.href = response.data.data.authorization_url
   } catch (err) {
-    console.error(err.code);
-    console.error(err);
+    console.error(err.code)
+    console.error(err)
   }
 };
+onMounted(()=>{
+  tx_ref.value = uuid4()
+})
 </script>

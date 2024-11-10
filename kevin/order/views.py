@@ -21,24 +21,18 @@ class OrderView(ModelViewSet):
                     details.get("reference"), 
                     details.get("metadata")
                 )
-                order_obj = Order(
-                    created_by = f"{metadata.get('first_name')} {metadata.get('last_name')}",
-                    created_for = f"{metadata.get('first_name')} {metadata.get('last_name')}",
-                    by_email = metadata.get("email"),# data.get("email"),
-                    for_email = metadata.get("email"),
-                    authorization_code=authorization_code,
-                    reference_code = reference,
-                    amount = details.get("amount")/100,
-                    status = "PAID",
-                    mode = metadata.get('delivery_mode'),
-                    address = metadata.get("address"),
-                    city = metadata.get("city")
-                )
-                order_obj.save()
+               
                 items_bought = metadata.get("custom_fields")
                 for item in items_bought:
-                    order_obj.cart.add(int(item.get("id")))
-                   
+                    order_obj=Order(
+                    created_by = f"{metadata.get('full_name')}",
+                    by_email = metadata.get("email"),# data.get("email"),
+                    reference_code = reference,
+                    amount = details.get("amount")/100,
+                    cart = items_bought.id
+                    #city = metadata.get("city")
+                )
+                    order_obj.asave()   
                 return Response({"data": "received"}, status=status.HTTP_201_CREATED)
             case _:
                 print(data)

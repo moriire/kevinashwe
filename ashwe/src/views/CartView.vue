@@ -8,20 +8,13 @@
       </p>
     </div>
     <div v-else>
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
+      <div class="table-responsive responsive">
+        <table class="table table-hovered">
           <tbody>
             <tr v-for="(item, index) in books.carts" :key="index">
-              <!--td>
-                <img :src="item.cover" :alt="item.title" class="img img-thumbnail">
-              </td-->
+              <td>
+                <img :src="item.cover" :alt="item.title" class="img-thumbnail img-responsive">
+              </td>
               <td>{{ item.title }}</td>
               <td>{{ item.price }}</td>
               <td>
@@ -39,7 +32,7 @@
               <td>
                 <h4>Total: {{ books.totalPrice | currency }}</h4>
               </td>
-              <td colspan="2" class="text-center">
+              <td colspan="3" class="text-end">
                 <router-link to="/checkout" class="btn btn-outline-primary btn-small"
                   >Checkout</router-link
                 >
@@ -54,7 +47,6 @@
 
 <script setup>
 import { useBookStore } from "@/stores/book";
-import { computed, onMounted, ref } from "vue";
 const books = useBookStore()
 </script>
 
