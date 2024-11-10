@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from order.models import Order
 from order.serializers import OrderSerializer
-
+import json
 class OrderView(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -22,7 +22,7 @@ class OrderView(ModelViewSet):
                     details.get("metadata")
                 )
                
-                items_bought = metadata.get("custom_fields")
+                items_bought = json.loads(metadata.get("custom_fields"))
                 for item in items_bought:
                     print(item)
                     order_obj=Order.objects.acreate(
