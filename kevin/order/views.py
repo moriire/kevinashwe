@@ -34,7 +34,7 @@ class OrderView(ModelViewSet):
                     #city = metadata.get("city")
                 )
                     #await 
-                    order_obj.asave()   
+                    order_obj.save()   
                 return Response({"data": "received"}, status=status.HTTP_201_CREATED)
             case _:
                 print(data)
