@@ -25,7 +25,7 @@ class OrderView(ModelViewSet):
                 items_bought = metadata.get("custom_fields")
                 for item in items_bought:
                     print(item.get("id"))
-                    order_obj = Order.objects.acreate(
+                    order_obj = Order.objects.create(
                     created_by = metadata.get('full_name'),
                     email = metadata.get("email"),# data.get("email"),
                     reference_code = reference,
