@@ -33,7 +33,7 @@ class OrderView(ModelViewSet):
                     cart = item.get("id")
                     #city = metadata.get("city")
                 )
-                    order_obj.asave()   
+                    order_obj.save()   
                 return Response({"data": "received"}, status=status.HTTP_201_CREATED)
             case _:
                 print(data)
