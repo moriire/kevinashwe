@@ -26,10 +26,10 @@ class OrderView(ModelViewSet):
                 for item in items_bought:
                     order_obj=Order(
                     created_by = f"{metadata.get('full_name')}",
-                    by_email = metadata.get("email"),# data.get("email"),
+                    email = metadata.get("email"),# data.get("email"),
                     reference_code = reference,
-                    amount = details.get("amount")/100,
-                    cart = items_bought.id
+                    amount = item.get("price")/100,
+                    cart = item.get("id")
                     #city = metadata.get("city")
                 )
                     order_obj.asave()   
