@@ -17,9 +17,14 @@ const removeFromCart = (index) => {
   localStorage.setItem("carts", JSON.stringify(carts.value));
 };
   const addToCart = async (book)=>{
+    if (carts.value.map(x => x.id).includes(book.id)){
+      alert("Already in cart");
+      return
+    } else {
     carts.value.push(book)
     localStorage.setItem("carts", JSON.stringify(carts.value))
     console.log(book)
+    }
   };
 
   const buyNow = async (book)=>{

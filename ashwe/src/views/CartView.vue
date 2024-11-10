@@ -16,7 +16,7 @@
                 <img :src="item.cover" :alt="item.title" class="img-thumbnail img-responsive">
               </td>
               <td>{{ item.title }}</td>
-              <td>{{ item.price }}</td>
+              <td>&#8358;{{ item.price }}</td>
               <td>
                 <button
                   class="btn btn-danger btn-sm"
@@ -29,10 +29,10 @@
           </tbody>
           <tfoot>
             <tr>
-              <td>
-                <h4>Total: {{ books.totalPrice | currency }}</h4>
+              <td colspan="2">
+                <h4>Total: &#8358;{{ books.totalPrice | currency }}</h4>
               </td>
-              <td colspan="3" class="text-end">
+              <td colspan="2" class="text-end">
                 <router-link to="/checkout" class="btn btn-outline-primary btn-small"
                   >Checkout</router-link
                 >
@@ -48,6 +48,7 @@
 <script setup>
 import { useBookStore } from "@/stores/book";
 const books = useBookStore()
+
 </script>
 
 <style scoped>

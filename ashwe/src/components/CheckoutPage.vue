@@ -33,23 +33,24 @@
           />
         </div>
       
-        <button type="submit" class="btn btn-primary">Complete Purchase {{ books.totalPrice }}</button>
+        <button type="submit" class="btn btn-primary">Complete Purchase &#8358;{{ books.totalPrice }}</button>
       </form>
     </div>
     <div class="col-lg-4 col-sm-10 col-xs-12 table-responsive responsive overflow">
       <table class="table">
-        <tr v-for="cart in carts">
+        <tr v-for="cart in books.carts">
           <td>
             <img
               :src="cart.cover"
               :alt="cart.title"
-              class="img img-thumbnail"
+              class=".img-thumbnail"
+              height="200px"
             />
           </td>
           <td>
-            <h4>{{ cart.title }}</h4>
+            <h4><RouterLink class="text-decoration-none" :to="{name: 'book', params:{pk: cart.id}}">{{ cart.title }}</RouterLink></h4>
             <p>{{ cart.subtitle }}</p>
-            <h2>{{ cart.price }}</h2>
+            <h4>&#8358;{{ cart.price }}</h4>
           </td>
         </tr>
       </table>
