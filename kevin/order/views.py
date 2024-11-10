@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from order.models import Order
+from books.models import BooksModel
 from order.serializers import OrderSerializer
 import json
 class OrderView(ModelViewSet):
@@ -30,7 +31,7 @@ class OrderView(ModelViewSet):
                     email = metadata.get("email"),# data.get("email"),
                     reference_code = reference,
                     amount = float(item.get("price")) / 100,
-                    cart = item.get("id")
+                    cart = BooksModel.objects.get(pk = item.get("id"))
                     #city = metadata.get("city")
                 )
                     #await 
