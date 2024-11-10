@@ -10,4 +10,4 @@ class OrderAdmin(admin.ModelAdmin):
       def carts(self, obj):
             return [item.name for item in obj.cart.all()]
 
-admin.site.register(Order, OrderAdmin)
+admin.site.register(Order)#, OrderAdmin)
