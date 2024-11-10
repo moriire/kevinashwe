@@ -10,7 +10,7 @@ class OrderView(ModelViewSet):
     serializer_class = OrderSerializer
 
     @action(detail=False, methods=["POST"])
-    async def payment_hook(self, request):
+    def payment_hook(self, request):
         data = request.data
         print(data)
         details = data["data"]
@@ -25,7 +25,7 @@ class OrderView(ModelViewSet):
                 items_bought = metadata.get("custom_fields")
                 for item in items_bought:
                     print(item.get("id"))
-                    order_obj = await Order.objects.acreate(
+                    order_obj = Order.objects.acreate(
                     created_by = metadata.get('full_name'),
                     email = metadata.get("email"),# data.get("email"),
                     reference_code = reference,
@@ -33,7 +33,8 @@ class OrderView(ModelViewSet):
                     cart = item.get("id")
                     #city = metadata.get("city")
                 )
-                    await order_obj.asave()   
+                    #await 
+                    order_obj.asave()   
                 return Response({"data": "received"}, status=status.HTTP_201_CREATED)
             case _:
                 print(data)
